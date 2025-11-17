@@ -64,3 +64,19 @@ app.listen(port, () =>
 );
 
 // https://www.google.com/search?q=lion
+
+
+// todo - crud
+
+// 1yr tarined devloper
+// id,title,description,dead_line, priority, isCompleted, date/time, isExtended, status,...
+
+
+// create - post - add todo
+// read - get - fetch todos, by id, title,description....
+// update - put - todo update
+// delete - delete - delete 
+
+// post man - devloper
+
+// 
