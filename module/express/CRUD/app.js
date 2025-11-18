@@ -22,12 +22,12 @@ const students = [
     age: 21,
     course: "B.C.A",
   },
-  // {
-  //   id: 4,
-  //   name: "Akshay Kumar",
-  //   age: 39,
-  //   course: "B.Com",
-  // },
+  {
+    id: 4,
+    name: "Akshay Kumar",
+    age: 39,
+    course: "B.Com",
+  },
 ];
 
 app.get("/api/get", (req, res) => {
