@@ -16,5 +16,7 @@ const fetchTodos = () => {
 
 fetchTodos();
 
+// successfully
 
-// 10am
+// normal vs dev dependency(devloper) - only delopment orienter, not affect result.
+// deploy
