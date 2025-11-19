@@ -84,3 +84,8 @@ app.listen(port, () =>
 // post man - devloper
 
 //
+
+// form validation
+// email,phone,password
+
+//
