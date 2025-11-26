@@ -62,4 +62,8 @@ app.listen(4000, () => {
 });
 
 // home search reel message notification profile
-//
+// 
+
+// ankit,roshani,deep,
+
+// CREATE TABLE table_name (colum1 datatype colum2 datatype....);
