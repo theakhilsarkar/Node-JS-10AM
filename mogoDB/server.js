@@ -20,3 +20,5 @@ app.post("/api", async (req, res) => {
 app.listen(4000, () => {
   console.log("server started....");
 });
+
+
