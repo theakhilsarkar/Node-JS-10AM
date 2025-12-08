@@ -12,13 +12,9 @@ const connectDB = async () => {
   return db;
 };
 
-const addEmployee = async () => {
+const addEmployee = async (employee) => {
   const db = await connectDB();
-  const result = await db.collection("employee").insertOne({
-    name: "Aman Gupta",
-    role: "Backend Devloper",
-    salary: 120000,
-  });
+  const result = await db.collection("employee").insertOne(employee);
   console.log("employee inserted on this id:  " + result.insertedId);
 };
 
@@ -27,6 +23,11 @@ export const getEmployee = async () => {
   const data = await db.collection("employee").find().toArray();
   return data;
 };
+
+app.post("/",(req,res)=>{
+  const employee = req.body;
+  addEmployee(employee)
+})
 
 app.get("/", async (req, res) => {
   const data = await getEmployee();

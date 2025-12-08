@@ -88,3 +88,56 @@ app.listen(3000, () => {
 
 // title , author, price, coverimage
 //
+
+// syncronous & asyncronous programming
+
+// defination must be in english.
+// syncronous - execute code line by line.
+// asyncronous - its doesn't intrupt execution process.
+// network request, api calling, get data from files, get data from database.
+// timer function
+
+// .then().catch()
+
+// await async, try..catch
+
+// if network request resolved successfully, then we will enter in then block, if not then we will enter in catch block, where you get error object.
+
+// exception(error) handling
+
+// 4xx - client
+// 5xx - server
+
+// runtime error -
+// compile time error - all syntax error
+// solution of compile time error -
+
+// code write
+// code compile --> command to move next step(run), compilte time error
+// code run --> runtime error, after successfull run --> result
+
+// try...catch
+
+// fetch("api_url").then((res) => res.json());
+// then((data) => {
+//   console.log(data);
+// }).catch();
+
+// async,await ->
+
+// try...catch -
+// try - we will write code in try for testing., if errpr ocuur then sent it to catch block
+
+// database, file, request handling
+
+const api_call = async () => {
+  try {
+    const res = await fetch("api_url");
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+
