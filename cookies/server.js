@@ -36,3 +36,17 @@ app.get("/home", isAuthenticated, (req, res) => {
 app.listen(4000, () => {
   console.log("server started !!");
 });
+
+
+
+
+
+// FTP-SEO-Hosting
+// dsa
+
+// home.html
+// www.yourdomainname.com/home
+
+// http://localhost:5173/
+// 
+// https://www.swiggy.com/
