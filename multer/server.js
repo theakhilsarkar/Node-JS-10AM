@@ -130,14 +130,14 @@ app.listen(3000, () => {
 
 // database, file, request handling
 
-const api_call = async () => {
-  try {
-    const res = await fetch("api_url");
-    const data = await res.json();
-    console.log(data);
-  } catch (err) {
-    console.log(err.message);
-  }
-};
+// const api_call = async () => {
+//   try {
+//     const res = await fetch("api_url");
+//     const data = await res.json();
+//     console.log(data);
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+// };
 
 
