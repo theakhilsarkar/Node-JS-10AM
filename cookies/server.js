@@ -9,15 +9,15 @@ app.use(cookieParser());
 // user information stored in db
 const USER = { email: "admin@gmail.com", password: 123456 };
 
-// middleware to protect route
 const isAuthenticated = (req, res, next) => {
-  const auth = req.cookies.auth;
-  if (auth) {
+  if (req.cookies.auth) {
     next();
   } else {
-    res.status(401).json({ message: "Please login first !!" });
+    res.status(401).json({ message: "Login First to access this site !!" });
   }
-};
+}
+
+// middleware to protect route
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -38,15 +38,22 @@ app.listen(4000, () => {
 });
 
 
+// Blog - articles + auth
+// password hash --> 123456
+//
+
+// on page seo
+// google search engine
+//
+// user search
+
+// img - alt = best laptop under 50000
+// heading - h1,h2,h3
+// p
+// p --> Heading
+
+// best laptop in 70000
+// keywords
 
 
-
-// FTP-SEO-Hosting
-// dsa
-
-// home.html
-// www.yourdomainname.com/home
-
-// http://localhost:5173/
-// 
-// https://www.swiggy.com/
+// ai --
