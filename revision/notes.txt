@@ -1,0 +1,13 @@
+
+
+client -> req -> api -> server(to handle req & res) -> database(to store and manage data)
+client -> api call
+api -> by express
+database -> mongodb(non relational database - key-value, document & collection)
+
+node js - js outside
+npm - express
+
+mongodb environment - MongoDB Community Server Download
+mongodb shell - monghsh
+mongodb compass - database 
