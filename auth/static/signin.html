@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIn</title>
+</head>
+
+<body>
+    <h1>Sign In</h1>
+    <input id="email" type="text">
+    <input id="password" type="text">
+    <button id="button">SignIn</button>
+    <script>
+        const email = document.getElementById("email")
+        const password = document.getElementById("password")
+        const button = document.getElementById("button")
+        button.addEventListener("click", () => {
+            const body = {
+                email: email.value,
+                password: password.value
+            }
+            fetch("http://localhost:4000/api/signin", {
+                headers: { "Content-Type": "application/json" },
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+                .then((res) => res.json())
+                .then((data) => console.log(data))
+        })
+    </script>
+</body>
+
+</html>

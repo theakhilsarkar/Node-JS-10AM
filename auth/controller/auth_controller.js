@@ -1,5 +1,6 @@
 import { AuthModel } from '../models/auth_model.js'
 import bcrypt from 'bcrypt'
+import { indexPath, signinPath, signupPath } from '../server.js'
 
 export const signUp = async (req, res) => {
     try {
@@ -25,12 +26,37 @@ export const signIn = async (req, res) => {
     }
     const isMatched = await bcrypt.compare(password, user.password);
     if (isMatched) {
+        res.cookie("auth", true, { httpOnly: true, maxAge: 1000 * 60 * 60 }); // 1hr
         res.json({ message: "user signin successfully !!" });
     } else {
         res.status(400).json({ message: "password is incorrect !" });
     }
 }
 
+export const getUsers = async (req, res) => {
+    try {
+        const users = await AuthModel.find();
+        res.json(users);
+    } catch (err) {
+        res.json({ message: "cant get user !", err });
+    }
+}
+
+export const homepage = (req, res) => {
+    res.sendFile(indexPath);
+}
+
+export const signinPage = (req, res) => {
+    res.sendFile(signinPath);
+}
+
+export const signupPage = (req, res) => {
+    res.sendFile(signupPath);
+}
+
 
 // cookie-parser
 // middleware
+
+
+// 

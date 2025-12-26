@@ -1,3 +1,5 @@
+import { signinPath } from "../server.js";
+
 export const checkAuthRequest = (req, res, next) => {
     if (req.body) {
         const { email, password } = req.body;
@@ -11,5 +13,12 @@ export const checkAuthRequest = (req, res, next) => {
     }
 }
 
-// $2b$12$WsFL.SB699gT6CFrcY2NJu0QlSWtyT7smD7MgO6cIuXcmbkwwbs8.
-// $2b$12$TKyDqtj4vBIvsd2hcM2B/.p37EsPDd5R.gAwNCyd5p1.38STFHZZW
+export const checkAlreadyLogin = (req, res, next) => {
+    try {
+        if (req.cookies.auth) {
+            next()
+        }
+    } catch (err) {
+        res.sendFile(signinPath);
+    }
+}
