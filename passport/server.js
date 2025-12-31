@@ -33,3 +33,16 @@ app.use("/", router);
 app.listen(4000, () => {
     console.log("server started !!")
 });
+
+// resources(pages) --> access
+// authentication - check user is valid
+// authorization - access
+
+// bank
+
+
+// bcrypt - password
+// cookie - expiry ---> true
+// passport - session + mongo + cookie
+// jsonwebtoken = jwt 
+// token - data
