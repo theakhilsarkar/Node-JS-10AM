@@ -62,3 +62,14 @@ export const verifyOtp = async (req, res) => {
     await OTP.deleteMany({ email });
     res.json({ message: "OTP Verified Successfully !" });
 }
+
+// node js - js run on system
+// express - server side 
+// mongodb - database - doc-col
+
+// 512 MB
+
+// get -> api
+// compass - 
+
+// 
