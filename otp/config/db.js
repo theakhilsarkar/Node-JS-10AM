@@ -9,6 +9,7 @@ export const connectDB = async () => {
     }
 }
 
+
 // blog
 // 1. login
 // 2. crud + multer
@@ -28,5 +29,7 @@ export const connectDB = async () => {
 // url - mongodb+srv://akhilsodvadiya08_db_user:gYnlMyFNIN1bM9RZ@firstcluster.fzoe4nr.mongodb.net/
 
 // r1 - 200 -
+
+
 // mongodb - 512mb
 
