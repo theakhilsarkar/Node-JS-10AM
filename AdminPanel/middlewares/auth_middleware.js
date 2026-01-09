@@ -18,3 +18,13 @@ export const validateSigninFields = (req, res, next) => {
         res.status(400).json({ status: false, message: "all fields are required !" })
     }
 }
+
+export const validateOtpFields = (req, res, next) => {
+    const { email, otp } = req.body;
+    if (email && otp) {
+        next();
+    }
+    else {
+        res.json({ status: false, message: "Please enter otp !" });
+    }
+}
