@@ -16,6 +16,7 @@ export const signup = async (req, res) => {
         res.json({ status: false, message: "Cant registered user !" });
     }
 }
+
 export const signin = async (req, res) => {
     // email,password
     const { email, password } = req.body;
@@ -81,3 +82,69 @@ export const verifyOTP = async (req, res) => {
     })
     res.json({ status: true, message: "OTP is verified & Signin successfully !" });
 }
+
+// api
+// change password - old password!=existing password, new password
+
+export const changePassword = async (req, res) => {
+    const { email, oldPassword, newPassword } = req.body;
+    try {
+        const user = await AuthCollection.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ status: false, message: "User not found !" });
+        }
+        // oldpassword == database password
+        const isMatch = await bcrypt.compare(oldPassword, user.password);
+        if (!isMatch) {
+            return res.json({ status: false, message: "your old password is incorrect !" });
+        }
+        // update password, new password -> bcrypt
+        const hashed = await bcrypt.hash(newPassword, 12);
+        await AuthCollection.updateOne({ email }, {
+            $set: {
+                password: hashed
+            }
+        }); //email -> password - hashed
+        return res.json({ status: true, message: "password changed successfully !" })
+    } catch (err) {
+        return res.json({ status: false, message: err.message });
+    }
+}
+
+// forget password - email -> otp -> verify -> new password==confirm password(update)
+
+export const forgetPassword = async (req, res) => {
+    const { email } = req.body;
+    const user = await AuthCollection.findOne({ email });
+    if (!user) {
+        return res.status(404).json({ status: false, message: "user not found !" });
+    }
+    const isOtpSent = await otpSender(email);
+    res.json(isOtpSent);
+}
+
+export const verifyOtpForCreatePassword = async (req, res) => {
+    const { email, otp, newPassword } = req.body;
+    try {
+        const record = await OtpCollection.findOne({ email, otp });
+        if (!record) {
+            return res.json({ status: false, message: "OTP is incorrect !" })
+        }
+        if (record.expiryAt < new Date(Date.now())) {
+            return res.json({ status: false, message: "otp is expired !" });
+        }
+        const hashed = await bcrypt.hash(newPassword, 12);
+        await AuthCollection.updateOne({ email }, {
+            $set: {
+                password: hashed
+            }
+        })
+        return res.json({ status: false, message: "password updated successfully !" });
+    } catch (err) {
+        return res.json({ status: false, message: "password not updated !" });
+    }
+}
+
+// getCurrentUser - fetch token from cookies, decode token = current user
+// email --> database
+// cookie
