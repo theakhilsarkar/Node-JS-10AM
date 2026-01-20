@@ -10,3 +10,5 @@ export const connectDB = async () => {
         console.log("mongodb connection failed", err);
     }
 }
+
+// PASS=zvbqcrspbbbwaot

@@ -28,6 +28,6 @@ export const otpSender = async (email) => {
         });
         return { status: true, message: "OTP Sent successfully !" };
     } catch (err) {
-        return { status: false, message: "Cant send otp !" };
+        return { status: false, message: err.message };
     }
 }

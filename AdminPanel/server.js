@@ -1,27 +1,15 @@
+import express from 'express'
+import auth_routes from './routes/auth_routes.js'
+import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
+import { connectDB } from './config/db.js'
 
+dotenv.config();
+connectDB();
+const app = express();
+app.use(express.json());
+app.use(cookieParser());
 
-// Admin Panel
-// admin
-// manager
-// employee
+app.use("/api/auth", auth_routes);
 
-// {
-//   admin,manager,employee
-// }
-
-// employee management system - HR
-
-// admin - name,email,phone,role,
-// manager - joining_date,salary,education,exp,manager_id,
-// employee - emp_id,department, address, 
-
-// design,dev,marketing,hr,CXO
-
-// maintance
-
-// admin --- user
-// admin, subadmin, user - meesho
-// admin(meesho)
-//          seller(subadmin)
-//          customer(user)
-
+app.listen(4000, () => console.log("server started >>"));
