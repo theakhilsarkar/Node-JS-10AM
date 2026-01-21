@@ -6,12 +6,12 @@ import mongoose from 'mongoose'
 // employee - emp_id,department, address, 
 
 const userSchema = new mongoose.Schema({
-    // email: { type: String, unique: true, required: true },
+    email: { type: String, unique: true, required: true },
     name: String,
     emp_id: String,
     phone: String,
     role: String,
-    joining_date: Date,
+    joining_date: String, // date
     salary: Number,
     education: String,
     exp: String,
@@ -31,3 +31,8 @@ export const UserCollection = mongoose.model("users", userSchema);
 
 // signup - email,password - auth collection
 // signin - verified , get users from user collection by email form auth
+
+// profile page
+
+// name==undefine - 
+// role = role not assigned

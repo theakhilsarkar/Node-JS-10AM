@@ -4,6 +4,7 @@ import { otpSender } from '../services/otp_services.js';
 import { OtpCollection } from '../models/otp_models.js';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import { UserCollection } from '../models/user_model.js';
 dotenv.config();
 
 export const signup = async (req, res) => {
@@ -11,6 +12,7 @@ export const signup = async (req, res) => {
     try {
         const hashed = await bcrypt.hash(password, 12);
         await AuthCollection.create({ email, password: hashed });
+        await UserCollection.create({ email });
         res.status(201).json({ status: true, message: "User registered successfully !" });
     } catch (err) {
         res.json({ status: false, message: "Cant registered user !" });
@@ -153,3 +155,4 @@ export const verifyOtpForCreatePassword = async (req, res) => {
 // getCurrentUser - fetch token from cookies, decode token = current user
 // email --> database
 // cookie
+
