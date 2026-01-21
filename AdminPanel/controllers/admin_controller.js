@@ -17,6 +17,8 @@ export const updateProfileByAdmin = async (req, res) => {
         return res.json({ status: false, message: err.message });
     }
 }
+
+
 export const updateProfileByUser = async (req, res) => {
     const { email, name, joining_date, profile_pic, phone, education, exp, address } = req.body;
     try {
