@@ -27,12 +27,12 @@ export const signin = async (req, res) => {
         const user = await AuthCollection.findOne({ email });
         console.log(user);
         if (!user) {
-            res.status(400).json({ status: false, message: "user not found, first signup !" })
+            res.json({ status: false, message: "user not found, first signup !" })
         }
         // 2. match password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            res.status(400).json({ status: false, message: "password is incorrect !" });
+            res.json({ status: false, message: "password is incorrect !" });
         }
         // 3. send otp
         const isOtpSent = await otpSender(email);

@@ -35,6 +35,7 @@ export const updateProfileByUser = async (req, res) => {
     }
 }
 
+//
 
 // name,role,salary
 
