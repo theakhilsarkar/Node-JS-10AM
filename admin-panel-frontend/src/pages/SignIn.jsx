@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { auth_api } from '../utils/globals.js'
 import { Link } from 'react-router';
+import { useNavigate } from 'react-router'
 
 export default function SignIn() {
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -15,7 +16,9 @@ export default function SignIn() {
             const res = await axios.post(`${auth_api}/signin`, user);
             if (res.data.status) {
                 alert(res.data.message);
-                // success logic
+                navigate("/verify-otp", {
+                    state: email
+                });
             } else {
                 alert(res.data.message);
             }
@@ -23,6 +26,7 @@ export default function SignIn() {
             console.log(err)
             alert(err.message);
         }
+
     }
 
     return (

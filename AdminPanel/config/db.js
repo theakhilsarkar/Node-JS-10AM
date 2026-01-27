@@ -4,7 +4,7 @@ dotenv.config()
 
 export const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb://localhost:27017/admin_panel")
+        await mongoose.connect(process.env.ATLAS_URL)
         console.log("mongodb connected successfully!")
     } catch (err) {
         console.log("mongodb connection failed", err);

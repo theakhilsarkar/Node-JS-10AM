@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { auth_api } from '../utils/globals.js'
+import { Link } from 'react-router';
 
 export default function SignUp() {
 
@@ -37,7 +38,7 @@ export default function SignUp() {
                     <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="exampleFormControlInput2" placeholder="Password" />
                 </div>
                 <div className='mb-5 d-flex justify-content-end'>
-                    <a href="">Already have an account? SignIn</a>
+                    <Link to="/">Already have an account? SignIn</Link>
                 </div>
                 <div className='mb-3  d-flex justify-content-center'>
                     <button onClick={handleSignup} className='btn btn-primary w-100'>Sign Up</button>

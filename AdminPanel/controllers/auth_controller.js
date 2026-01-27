@@ -15,7 +15,7 @@ export const signup = async (req, res) => {
         await UserCollection.create({ email });
         res.status(201).json({ status: true, message: "User registered successfully !" });
     } catch (err) {
-        res.json({ status: false, message: "Cant registered user !" });
+        res.json({ status: false, message: err.message });
     }
 }
 
