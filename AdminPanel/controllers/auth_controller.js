@@ -11,8 +11,8 @@ export const signup = async (req, res) => {
     const { email, password } = req.body;
     try {
         const hashed = await bcrypt.hash(password, 12);
-        await AuthCollection.create({ email, password: hashed });
-        await UserCollection.create({ email });
+        const user = await UserCollection.create({ email });
+        await AuthCollection.create({ email, password: hashed, user: user._id });
         res.status(201).json({ status: true, message: "User registered successfully !" });
     } catch (err) {
         res.json({ status: false, message: err.message });
@@ -156,3 +156,19 @@ export const verifyOtpForCreatePassword = async (req, res) => {
 // email --> database
 // cookie
 
+export const getCurrentUser = async (req, res) => {
+    try {
+        const token = req.cookies.auth_token;
+        const decoded = jwt.verify(token, process.env.SECRET_KEY, {
+            expiresIn: "1d",
+        });
+        if (decoded) {
+            const user = await AuthCollection.findById(decoded._doc._id).populate("user");
+            return res.json({ status: true, message: "Current user fetched successfully !", user });
+        } else {
+            return res.json({ status: false, message: "cant get current user !" })
+        }
+    } catch (err) {
+        return res.json({ status: false, message: err.message })
+    }
+}
