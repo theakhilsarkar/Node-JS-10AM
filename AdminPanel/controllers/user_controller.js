@@ -1,5 +1,6 @@
 import { UserCollection } from '../models/user_model.js'
-
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
 // (IT,Sales,HR,MDs)
 // Ramesh, IT, 2026, 
 // 18113IT26
@@ -33,10 +34,23 @@ export const updateProfileByUser = (req, res) => {
     const { education, phone, profile_pic, address, exp } = req.body;
 }
 
-export const updateProfileByAdmin = (req, res) => {
-    const {
-        email, name, emp_id, role, joining_date, salary, department, education, phone, profile_pic, address, exp
-    } = req.body;
+export const updateProfileByAdmin = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await UserCollection.updateOne({ email }, { $set: req.body });
+        const token = jwt.sign({ ...user }, process.env.SECRET_KEY, {
+            expiresIn: "1d",
+        });
+        res.cookie("auth_token", token, {
+            maxAge: 1000 * 60 * 60 * 24,
+            sameSite: "strict",
+            httpOnly: true
+        })
+        return res.json({ status: true, message: "profile updated successfully !" });
+    }
+    catch (err) {
+        return res.json({ status: false, message: err.message });
+    }
 }
 
 // get all users
