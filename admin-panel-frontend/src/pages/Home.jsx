@@ -32,6 +32,9 @@ export default function Home() {
                             <li className="nav-item">
                                 <Link to={"/profile"}><a className="nav-link active" aria-current="page" href="#">Profile</a></Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to={"/add-emp"}><a className="nav-link active" aria-current="page" href="#">Add Employee</a></Link>
+                            </li>
 
                         </ul>
                         <form className="d-flex" role="search">

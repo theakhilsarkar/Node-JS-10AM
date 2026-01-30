@@ -63,3 +63,14 @@ export const getAllUsers = async (req, res) => {
         res.json({ status: false, message: "Cant get users !", users: [] });
     }
 }
+
+export const deleteUser = async (req, res) => {
+    const id = req.query.id;
+    try {
+        await UserCollection.findByIdAndDelete(id);
+        return res.json({ status: true, message: "Employee Deleted Successfully !" });
+    } catch (err) {
+        console.log(err.message);
+        return res.json({ status: false, message: err.message })
+    }
+}

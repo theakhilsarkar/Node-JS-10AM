@@ -51,7 +51,7 @@ export default function Profile() {
                     </div>
                     <div className="col">
                         <label htmlFor="name">Name</label>
-                        <input type="text" id="name" value={currentUser.name ?? ""} onChange={(e) => setCurrentUser({ ...currentUser, name: e.target.value })} className="form-control" id='name' placeholder="Your full name" aria-label="Your full name" />
+                        <input type="text" id="name" value={currentUser.name ?? ""} onChange={(e) => setCurrentUser({ ...currentUser, name: e.target.value })} className="form-control" placeholder="Your full name" aria-label="Your full name" />
                     </div>
                 </div>
                 <div className="row m-3">
