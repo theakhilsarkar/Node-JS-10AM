@@ -27,6 +27,7 @@ export default function VerifyOtp() {
             <div className='col-4 shadow p-3 rounded'>
                 <h4 className='mb-4 text-center'>Verify OTP</h4>
                 <div className='d-flex justify-content-center mb-3'>
+                    
                     <OTPInput value={otp} onChange={setOtp} autoFocus OTPLength={6} otpType="number" disabled={false} />
                 </div>
                 <div>
@@ -39,3 +40,18 @@ export default function VerifyOtp() {
         </div>
     )
 }
+
+
+// SERVER DRIVEN UI - 
+
+// ECOM 
+// CLOTHES 
+// MEN 
+
+// 3 COLLECTIONS
+
+// roles --> collection
+
+// IT & Devlopment -> MERM, AIMIL, FRONT,BACK
+// HR -> 
+// SALES - BDE, SE, 

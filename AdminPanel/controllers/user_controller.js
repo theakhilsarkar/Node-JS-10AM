@@ -74,3 +74,14 @@ export const deleteUser = async (req, res) => {
         return res.json({ status: false, message: err.message })
     }
 }
+
+export const getUserById = async (req, res) => {
+    const id = req.query.id;
+    console.log(id);
+    try {
+        const user = await UserCollection.findById(id);
+        return res.json({ status: true, message: "user fetched successfully !", user });
+    } catch (err) {
+        return res.json({ status: false, message: err.message })
+    }
+}

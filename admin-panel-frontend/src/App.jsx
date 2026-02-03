@@ -8,6 +8,7 @@ import VerifyOtp from "./pages/VerifyOtp"
 import Home from "./pages/Home"
 import Profile from "./pages/Profile"
 import AddEmploye from "./pages/AddEmploye"
+import EditEmployee from "./pages/EditEmployee"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/add-emp" element={<AddEmploye />} />
+        <Route path="/edit-emp" element={<EditEmployee />} />
       </Routes>
     </>
   )

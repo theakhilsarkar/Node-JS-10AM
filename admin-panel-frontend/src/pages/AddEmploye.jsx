@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { admin_api, auth_api } from '../utils/globals';
+import { useNavigate } from 'react-router'
 
 export default function AddEmploye() {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [users, setUsers] = useState([]);
@@ -92,10 +95,12 @@ export default function AddEmploye() {
                                             <td>{user.email}</td>
                                             <td>{user.name ?? "Not Assign"}</td>
                                             <td>{user.role ?? "Not Assign"}</td>
-                                            <td>
-                                                <button className='btn btn-primary me-2'>Edit</button>
-                                                <button onClick={() => deleteEmployee(user._id)} className='btn btn-danger'>Delete</button>
-                                            </td>
+                                            {
+                                                user.role == 'Admin' ? <td></td> : <td>
+                                                    <button onClick={() => navigate("/edit-emp", { state: user._id })} className='btn btn-primary me-2'>Edit</button>
+                                                    <button onClick={() => deleteEmployee(user._id)} className='btn btn-danger'>Delete</button>
+                                                </td>
+                                            }
                                         </tr>)
                                     }
                                 </tbody>
