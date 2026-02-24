@@ -55,8 +55,25 @@ export const updateProfileByAdmin = async (req, res) => {
 
 // get all users
 export const getAllUsers = async (req, res) => {
+    const { page, limit } = req.query;
+    const skip = (Number(page) - 1) * limit; // 1 - 1 * 7 = 0, 1*7
+    console.log("page: " + page);
+    console.log("skip: " + skip);
+    console.log("limit: " + limit);
     try {
-        const users = await UserCollection.find();
+        const users = await UserCollection.find().skip(skip).limit(limit);
+        res.json({ status: true, message: "User Fetched Successfully !", users });
+    }
+    catch (err) {
+        res.json({ status: false, message: "Cant get users !", users: [] });
+    }
+}
+// all users = 15, 7 res per page
+export const getUsersByRole = async (req, res) => {
+    const role = req.query.role;
+    try {
+        let users = await UserCollection.find({ role });
+        // users = users.filter((user) => user.role.toLowerCase() == role.toLowerCase());
         res.json({ status: true, message: "User Fetched Successfully !", users });
     }
     catch (err) {
@@ -85,3 +102,4 @@ export const getUserById = async (req, res) => {
         return res.json({ status: false, message: err.message })
     }
 }
+// 10 

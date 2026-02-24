@@ -73,16 +73,16 @@ export const verifyOTP = async (req, res) => {
 
         // jwt
         // get user
-            const user = await AuthCollection.findOne({ email });
-            // x = {...user}
-            const token = jwt.sign({ ...user }, process.env.SECRET_KEY, {
-                expiresIn: "1d",
-            });
-            res.cookie("auth_token", token, {
-                maxAge: 1000 * 60 * 60 * 24,
-                sameSite: "strict",
-                httpOnly: true
-            })
+        const user = await AuthCollection.findOne({ email });
+        // x = {...user}
+        const token = jwt.sign({ ...user }, process.env.SECRET_KEY, {
+            expiresIn: "1d",
+        });
+        res.cookie("auth_token", token, {
+            maxAge: 1000 * 60 * 60 * 24,
+            sameSite: "strict",
+            httpOnly: true
+        })
         res.json({ status: true, message: "OTP is verified & Signin successfully !" });
     } catch (err) {
         res.json({ status: false, message: err.message })
@@ -163,7 +163,7 @@ export const getCurrentUser = async (req, res) => {
             expiresIn: "1d",
         });
         if (decoded) {
-            const user = await AuthCollection.findById(decoded._doc._id).populate("user","-createdAt -__v -updatedAt");
+            const user = await AuthCollection.findById(decoded._doc._id).populate("user", "-createdAt -__v -updatedAt");
             return res.json({ status: true, message: "Current user fetched successfully !", user });
         } else {
             return res.json({ status: false, message: "cant get current user !" })
@@ -172,3 +172,9 @@ export const getCurrentUser = async (req, res) => {
         return res.json({ status: false, message: err.message })
     }
 }
+
+
+// 1000
+// 10
+
+// filteration, pagination

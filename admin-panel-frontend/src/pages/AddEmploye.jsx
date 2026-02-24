@@ -4,15 +4,18 @@ import { admin_api, auth_api } from '../utils/globals';
 import { useNavigate } from 'react-router'
 
 export default function AddEmploye() {
+
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [filterText, setFilterText] = useState("")
     const [users, setUsers] = useState([]);
+    const [pageCount, setPageCount] = useState(1);
 
     useEffect(() => {
         getAllUsers();
-    }, [])
+    }, [pageCount])
 
     const handleAddEmployee = async () => {
         try {
@@ -28,8 +31,19 @@ export default function AddEmploye() {
 
     const getAllUsers = async () => {
         try {
-            const res = await axios.get(`${admin_api}/get-all-users`);
+            const res = await axios.get(`${admin_api}/get-all-users?page=${pageCount}&limit=5`);
             console.log(res.data.users)
+            if (res.data.status) {
+                setUsers(res.data.users);
+            }
+        } catch (err) {
+            alert(err.message);
+        }
+    }
+
+    const getUsersByRole = async () => {
+        try {
+            const res = await axios.get(`${admin_api}/get-user-by-role?role=${filterText}`);
             if (res.data.status) {
                 setUsers(res.data.users);
             }
@@ -50,6 +64,7 @@ export default function AddEmploye() {
         }
     }
 
+    console.log(pageCount);
     return (
         <div>
             <div className='container'>
@@ -76,7 +91,17 @@ export default function AddEmploye() {
                 </div>
                 <div className='d-flex justify-content-center shadow p-3 rounded'>
                     <div className='w-100'>
-                        <h4 className='my-3'>All Employes</h4>
+                        <div className='d-flex justify-content-between'>
+                            <span className='my-4 fs-2 fw-medium'>All Employes</span>
+                            <div>
+                                <input value={filterText} onChange={(e) => setFilterText(e.target.value)} className='mx-2' type="text" placeholder='enter role' />
+                                <button onClick={getUsersByRole} className='mx-2 btn btn-primary'>Search</button>
+                                <button onClick={() => {
+                                    setPageCount((state) => state + 1); // 
+
+                                }} className='mx-2 btn btn-primary'>++</button>
+                            </div>
+                        </div>
                         <div>
                             <table className="table table-hover">
                                 <thead>

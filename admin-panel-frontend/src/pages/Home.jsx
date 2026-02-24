@@ -29,11 +29,14 @@ export default function Home() {
                                     <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
-                            <li className="nav-item">
-                                <Link to={"/profile"}><a className="nav-link active" aria-current="page" href="#">Profile</a></Link>
+                            <li className="nav-item mx-3">
+                                <Link to={"/profile"}>Profile</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to={"/add-emp"}><a className="nav-link active" aria-current="page" href="#">Add Employee</a></Link>
+                            <li className="nav-item mx-3">
+                                <Link to={"/add-emp"}>Add Employee</Link>
+                            </li>
+                            <li className="nav-item mx-3">
+                                <Link to={"/add-selection"}>Add Selection</Link>
                             </li>
 
                         </ul>

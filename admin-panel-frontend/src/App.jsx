@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import Profile from "./pages/Profile"
 import AddEmploye from "./pages/AddEmploye"
 import EditEmployee from "./pages/EditEmployee"
+import AddSelection from "./pages/AddSelection"
 
 function App() {
 
@@ -22,9 +23,24 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/add-emp" element={<AddEmploye />} />
         <Route path="/edit-emp" element={<EditEmployee />} />
+        <Route path="/add-selection" element={<AddSelection />} />
       </Routes>
     </>
   )
 }
 
-export default App
+export default App;
+
+// dropdown data - database
+
+// Sales - sales exe. telecaller, Relationship Manager
+// IT - Devloper, Designer, QA, Tester, DevOps
+// HR - Recuruter, Interviewer, Employe Manager
+
+// department - 
+// role - 
+
+// department
+// role
+
+
